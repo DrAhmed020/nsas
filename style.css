@@ -1,0 +1,268 @@
+/* التنسيق العام */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Cairo', sans-serif;
+}
+
+body {
+  background: linear-gradient(120deg, #c9f8ff, #fce2ff);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* حاوية الصفحة */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+}
+
+/* عناوين الصفحة */
+h1, h2 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+/* تبويبات التنقل */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.tabs button:hover {
+  background: #2980b9;
+  transform: scale(1.05);
+}
+
+.tabs button.active {
+  background: #2980b9;
+}
+
+/* أقسام العرض */
+.section {
+  display: none;
+  text-align: left;
+}
+
+.section.active {
+  display: block;
+}
+
+/* خانة البحث */
+.search-container {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.search-container input {
+  width: 50%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  text-align: center;
+}
+
+/* كروب بوكس لقائمة المشتركين */
+.group-box {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  max-height: none;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+/* تبويبات فرعية داخل قسم إدارة المشتركين */
+.manage-subsection {
+  display: none;
+  text-align: left;
+}
+.manage-subsection.active {
+  display: block;
+}
+
+/* تبويبات فرعية بنفس تنسيق التبويبات الرئيسية */
+.manage-sub-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.manage-sub-tabs button {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background 0.3s, transform 0.2s;
+}
+.manage-sub-tabs button:hover {
+  background: #2980b9;
+  transform: scale(1.05);
+}
+.manage-sub-tabs button.active {
+  background: #2980b9;
+}
+
+/* تنسيق بطاقات المشتركين */
+.subscriber-card {
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s;
+  position: relative;
+}
+
+.subscriber-card:hover {
+  background: #f9f9f9;
+}
+
+.subscriber-card h3 {
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.subscriber-card p {
+  margin: 4px 0;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* تمييز الحالات الاختيارية */
+.subscriber-card.expired {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+.subscriber-card.warning {
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+
+/* تنسيق أزرار البطاقة */
+.card-buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.card-buttons button {
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn-activate { background: #2ecc71; color: #fff; }
+.btn-edit     { background: #f1c40f; color: #fff; }
+.btn-delete   { background: #e74c3c; color: #fff; }
+.btn-stop     { background: #8e44ad; color: #fff; }
+/* تنسيق زر "تشغيل" الخاص بجلسة PPP Active */
+.btn-enable {
+  background: #27ae60; /* أخضر */
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+  display: inline-block !important;
+  visibility: visible !important;
+}
+
+/* تنسيق نموذج الإضافة/التعديل */
+.form-group {
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group button {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group button {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.form-group button:hover {
+  background: #2980b9;
+  transform: scale(1.05);
+}
+
+/* سجل العمليات */
+.log-box {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.log-entry {
+  border-bottom: 1px solid #ddd;
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+/* تذييل الصفحة */
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #888;
+}
+
+/* تنسيق بطاقة المشترك عند الحالة stopped */
+.subscriber-card.stopped {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
