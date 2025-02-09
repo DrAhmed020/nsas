@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>SAS - نظام الاشتراكات</title>
+  <!-- استدعاء خط Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <!-- ربط ملف التنسيق الخارجي -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>SAS - نظام الاشتراكات</h1>
+    <!-- تبويبات التنقل -->
+    <div class="tabs">
+      <button id="tabListBtn" class="active" onclick="showSection(0)">المشتركين</button>
+      <button id="tabAddBtn" onclick="showSection(1)">إضافة / تعديل مشترك</button>
+      <button id="tabLogBtn" onclick="showSection(2)">سجل العمليات</button>
+      <!-- التبويب الجديد لإدارة المشتركين -->
+      <button id="tabManageBtn" onclick="showSection(3)">إدارة المشتركين</button>
+    </div>
+
+    <!-- أقسام العرض -->
+    <!-- 1) قسم عرض المشتركين -->
+    <div class="section active" id="listSection">
+      <h2>المشتركين</h2>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="بحث عن مشترك..." onkeyup="filterSubscribers()">
+      </div>
+      <div class="group-box">
+        <div class="subscribers-list" id="subscribersList"></div>
+      </div>
+    </div>
+
+    <!-- 2) قسم إضافة / تعديل مشترك -->
+    <div class="section" id="addSection">
+      <h2 id="formTitle">إضافة مشترك</h2>
+      <!-- نموذج الإضافة/التعديل -->
+      <form id="subscriberForm" onsubmit="submitSubscriberForm(event)">
+        <input type="hidden" id="subscriberId" name="subscriberId">
+        <div class="form-group">
+          <label>اسم المشترك</label>
+          <input type="text" id="subName" name="name" placeholder="مثال: أحمد محمد" required>
+        </div>
+        <div class="form-group">
+          <label>اسم اليوزر</label>
+          <input type="text" id="subUser" name="user" placeholder="مثال: ahmed123" required>
+        </div>
+        <div class="form-group">
+          <label>كلمة السر</label>
+          <input type="password" id="subPass" name="pass" placeholder="******" required>
+        </div>
+        <div class="form-group">
+          <label>نوع الاشتراك</label>
+          <select id="subType" name="type">
+            <option value="لايت">لايت</option>
+            <option value="ايكونمي">ايكونمي</option>
+            <option value="بلص">بلص</option>
+            <option value="ستندر">ستندر</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>سعر الاشتراك</label>
+          <input type="number" id="subPrice" name="amount" placeholder="مثال: 100" required>
+        </div>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="subInstallment" name="isDebt">
+            اشتراك بالأجل
+          </label>
+        </div>
+        <div class="form-group">
+          <label>السبب</label>
+          <input type="text" id="subReason" name="reason" placeholder="مثال: انتهاء الاشتراك">
+        </div>
+        <div class="form-group">
+          <label>تاريخ البداية</label>
+          <input type="date" id="subStartDate" name="startDate" required>
+        </div>
+        <div class="form-group">
+          <label>تاريخ النهاية</label>
+          <input type="date" id="subEndDate" name="endDate" required>
+        </div>
+        <div class="form-group">
+          <button type="submit" id="submitBtn">إضافة المشترك</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- 3) قسم سجل العمليات -->
+    <div class="section" id="logSection">
+      <h2>سجل العمليات</h2>
+      <div class="log-box" id="logBox"></div>
+    </div>
+
+    <!-- 4) قسم إدارة المشتركين الجديد -->
+    <div class="section" id="manageSection">
+      <h2>إدارة المشتركين</h2>
+      <!-- تبويبات فرعية (المتصلين – الجميع) -->
+      <div class="tabs">
+        <button id="tabConnectedBtn" class="active" onclick="showManageSubsection(0)">المتصلين</button>
+        <button id="tabAllBtn" onclick="showManageSubsection(1)">الجميع</button>
+      </div>
+
+      <!-- قسم المتصلين -->
+      <div class="manage-subsection active" id="connectedSection">
+        <h3>المتصلين حاليًا</h3>
+        <div class="group-box" id="connectedList">
+          <!-- سيتم ملء البيانات المتعلقة بالمتصلين عبر دالة loadConnectedUsers() من ملف script.js -->
+        </div>
+      </div>
+
+      <!-- قسم الجميع -->
+      <div class="manage-subsection" id="allSection">
+        <h3>جميع المشتركين</h3>
+        <div class="group-box" id="allList">
+          <!-- سيتم ملء جميع المشتركين عبر دالة loadAllUsers() من ملف script.js -->
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>جميع الحقوق محفوظة &copy; مشروع SAS</p>
+    </div>
+  </div>
+
+  <!-- ربط ملفات الجافاسكربت الخارجية -->
+  <script src="js/sectionManagement.js" type="module"></script>
+  <script src="js/dataLoading.js" type="module"></script>
+  <script src="js/sessionManagement.js" type="module"></script>
+  <script src="js/subscriberActions.js" type="module"></script>
+  <script src="js/utilities.js" type="module"></script>
+  <script type="module">
+    import { showSection, showManageSubsection } from './js/sectionManagement.js';
+    import { loadConnectedUsers, loadAllUsers } from './js/dataLoading.js';
+    import { stopPPPActiveSession, enablePPPActiveSession } from './js/sessionManagement.js';
+    import { toggleActivationPPP, editSubscriberByUser, deleteSubscriberByUser } from './js/subscriberActions.js';
+    import { filterSubscribers, logOperation, loadSubscribers, editSubscriber, toggleActivation, stopSubscriber, deleteSubscriber, fetchMikroTikLogs } from './js/utilities.js';
+
+    // جعل الدوال متاحة في نطاق window
+    window.showSection = showSection;
+    window.showManageSubsection = showManageSubsection;
+    window.loadConnectedUsers = loadConnectedUsers;
+    window.loadAllUsers = loadAllUsers;
+    window.stopPPPActiveSession = stopPPPActiveSession;
+    window.enablePPPActiveSession = enablePPPActiveSession;
+    window.toggleActivationPPP = toggleActivationPPP;
+    window.editSubscriberByUser = editSubscriberByUser;
+    window.deleteSubscriberByUser = deleteSubscriberByUser;
+    window.filterSubscribers = filterSubscribers;
+    window.logOperation = logOperation;
+    window.loadSubscribers = loadSubscribers;
+    window.editSubscriber = editSubscriber;
+    window.toggleActivation = toggleActivation;
+    window.stopSubscriber = stopSubscriber;
+    window.deleteSubscriber = deleteSubscriber;
+    window.fetchMikroTikLogs = fetchMikroTikLogs;
+
+    // استدعاء الدالة عند تحميل الصفحة
+    document.addEventListener("DOMContentLoaded", () => {
+      showSection(0); // يمكنك تغيير الرقم حسب القسم الذي تريد عرضه افتراضيًا
+    });
+  </script>
+</body>
+</html>
